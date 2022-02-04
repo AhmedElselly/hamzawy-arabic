@@ -3,7 +3,7 @@ import Navbar from '../components/Navbar'
 import store from '../redux/store';
 import {Provider} from 'react-redux';
 import '../styles/globals.css'
-
+import 'quill/dist/quill.snow.css'; 
 
 
 function MyApp({ Component, pageProps }) {

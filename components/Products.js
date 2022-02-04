@@ -29,7 +29,7 @@ const Products = props => {
 	const generatePosts = () => {
 		return posts?.map(post => {
 			return(
-				<div className={styles.card}>
+				<div key={post._id} className={styles.card}>
 					<Link href={`/products/${post._id}`}>
 						<span className={styles.title}>{post.title}</span>
 					</Link>

@@ -21,3 +21,29 @@ a {
 .carousel-container {
   direction: ltr;
 }
+
+
+.rc-slider {
+    width: 80% !important;
+    margin: 20px 20px ;
+}
+
+.rc-slider-track {
+  background-color: #d1411e !important;
+}
+
+.rc-slider-handle,
+.rc-slider-handle-2 {
+  border: none !important;
+}
+
+.rc-handle-draging {
+  border: none;
+  box-shadow: none;
+}
+
+.rc-slider-handle:focus,
+.rc-slider-handle-2:focus {
+  border: none;
+  outline: none;
+}

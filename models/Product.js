@@ -7,6 +7,10 @@ const ProductSchema = new Schema({
         type: String,
         required: true
     },
+    subtitle: {
+        type: String,
+        required: true
+    },
     desc: {
         type: String,
         required: true
@@ -20,6 +24,10 @@ const ProductSchema = new Schema({
         required: true
     },
     category: {
+        type: String,
+        required: true
+    },
+    subCategory: {
         type: String,
         required: true
     }

@@ -12,7 +12,7 @@ const ProductList = (props) => {
 
   const listingPizza = () => {
     return list.map(product => (
-      <Card key={product._id} _id={product._id} title={product.title} desc={product.desc} image={product.image} price={product.price}  />
+      <Card key={product._id} _id={product._id} subtitle={product.subtitle} title={product.title} desc={product.desc} image={product.image} price={product.price}  />
     ))
   }
 	return(

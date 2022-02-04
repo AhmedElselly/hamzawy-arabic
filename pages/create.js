@@ -1,18 +1,21 @@
 import axios from 'axios';
 import { useRouter } from 'next/router';
-import { useState, Fragment, useRef } from 'react';
+import { useState, Fragment, useRef, useEffect } from 'react';
 import styles from '../styles/Create.module.css';
 import Head from 'next/head';
 import { Editor } from '@tinymce/tinymce-react';
+// import { useQuill } from 'react-quilljs';
 
 const Create = props => {
 	// const [editorState, setEditorState] = useState(
   //   () => EditorState.createEmpty(),
   // );
+	// const { quill, quillRef } = useQuill();
 	const editorRef = useRef(null);
 	const [files, setFiles] = useState('');
 	const [values, setValues] = useState({
 		title: '',
+		subtitle: '',
 		price: '',
 		image: '',
 		category: ''
@@ -21,21 +24,28 @@ const Create = props => {
 
 	const {
 		title,
+		subtitle,
 		desc,
 		price,
 		image,
 		file,
 		category
 	} = values;
-	
-	// const handleEditorChange = () => {
-	// 	console.log(desc)
-	// 	setValues({...values, desc: editorRef.current.getContent()})
-	// }
+
+	// useEffect(() => {
+	// 	if(quill){
+	// 		quill.on('text-change', (delta, oldDelta, source) => {
+	// 			console.log(quill.root.innerHTML)
+	// 			setValues({...values, desc: quill.root.innerHTML});
+	// 		})
+	// 	}
+	// }, [quill]);
 
 	const handleChange = e => {
+		
 		setValues({...values, [e.target.name]:e.target.value});
 	}
+
 
 	const handleClick = async () => {
 		const formData = new FormData();
@@ -48,6 +58,7 @@ const Create = props => {
 		const urlCreate = 'http://localhost:3000/api/products';
 		const res = await axios.post(`${urlCreate}`, {
 			title,
+			subtitle,
 			price,
 			desc,
 			image: url,
@@ -60,11 +71,10 @@ const Create = props => {
 	return(
 		<Fragment>
 			<Head>
-        <title>Create Ordering App</title>
-        <meta name="description" content="Best pizza shop in town" />
-        <link rel="icon" href="/favicon.ico" />
-        
-      </Head>
+				<title>Create Ordering App</title>
+				<meta name="description" content="Best pizza shop in town" />
+				<link rel="icon" href="/favicon.ico" />			
+		</Head>
 		
 		<div className={styles.container}>
 			<div className={styles.wrapper}>
@@ -80,6 +90,18 @@ const Create = props => {
 						/>
 					</div>
 					<div className={styles.item}>
+						<label className={styles.label}>
+							أسفل الاسم
+						</label>
+						<input 
+							className={styles.input}
+							type='text' 
+							name='subtitle'
+							value={subtitle}
+							onChange={handleChange}
+						/>
+					</div>
+					<div className={styles.item}>
 						<label className={styles.label}>الصورة</label>
 						<input 
 							className={styles.input}
@@ -89,6 +111,9 @@ const Create = props => {
 					</div>
 					<div className={styles.item}>
 						<label className={styles.label}>الوصف</label>
+						{/* <div style={{ width: '100%', height: 200, marginBottom: 100 }}>
+							<div ref={quillRef} />
+						</div> */}
 						{/* <input 
 							className={styles.input}
 							type='text' 
@@ -104,7 +129,7 @@ const Create = props => {
 							// onChange={handleEditorChange}
 							init={{
 								height: 500,
-								menubar: false,
+								menubar: true,
 								plugins: [
 									'advlist autolink lists link image charmap print preview anchor',
 									'searchreplace visualblocks code fullscreen',
@@ -116,7 +141,7 @@ const Create = props => {
 								'removeformat | help',
 								content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
 							}}
-						/>
+						/> 
 					</div>
 					<div className={styles.item}>
 						<label className={styles.label}>السعر</label>

@@ -17,7 +17,7 @@ const Orders = props => {
 	const generateOrders = () => {
 		return orders?.map(order => {
 			return(
-				<div className={styles.wrapper}>
+				<div key={order._id} className={styles.wrapper}>
 					<div className={styles.orderId}>OrderID: {order._id}</div>
 					<div className={styles.listItem}><b>Name</b>: {order.name}</div>
 					<div className={styles.listItem}><b>Address</b>: {order.address}</div>

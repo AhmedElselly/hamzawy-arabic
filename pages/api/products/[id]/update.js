@@ -6,22 +6,21 @@ const handler = async (req, res) => {
 	dbConnect();
 	
 	if(method === 'PUT'){
-			console.log(req.body);
-			const product = await Product.findById({_id: id});
+		console.log(req.body);
+		const product = await Product.findById({_id: id});
 
-			product.title = req.body.title;
-			product.desc = req.body.desc;
-			product.price = req.body.price;
-			product.category = req.body.category;
-			product.image = req.body.image;
-				
-			product.save((err, product) => {
-				if(err) return res.status(500).json({err});
-				return res.json(product);
-			})
+		product.title = req.body.title;
+		product.subtitle = req.body.subtitle;
+		product.desc = req.body.desc;
+		product.price = req.body.price;
+		product.category = req.body.category;
+		product.subCategory = req.body.subCategory;
+		product.image = req.body.image;
 			
-
-		
+		product.save((err, product) => {
+			if(err) return res.status(500).json({err});
+			return res.json(product);
+		});
 	}
 }
 

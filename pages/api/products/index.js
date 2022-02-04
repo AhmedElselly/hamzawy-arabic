@@ -5,13 +5,13 @@ const handler = async (req, res) => {
 	const {method, query} = req;
 	dbConnect();
 	if(method === 'GET'){
-			console.log('querymongo', query)
-			const products = await Product.paginate({}, {
-				page: Number(query.page),
-				limit: 8
-			});
-			return res.json(products);
-		
+		console.log('querymongo', query)
+		const products = await Product.paginate({}, {
+			page: Number(query.page),
+			limit: 8
+		});
+		return res.json(products);
+	
 	}
 
 	if(method === 'POST'){

@@ -6,9 +6,11 @@ import { useDispatch } from 'react-redux';
 import {addProduct} from '../../../redux/cartSlice';
 import { Markup } from 'react-render-markup';
 import Alert from '../../../components/Alert';
+import ByCategory from '../../../components/ByCategory';
 
-const Product = ({product}) => {
+const Product = ({product, categories}) => {
 	const [size, setSize] = useState(0);
+	// const [related, setRelated] = useState([]);
 	const [price, setPrice] = useState(product.price);
 	const [extras, setExtras] = useState([]);
 	const [qty, setQty] = useState(1);
@@ -27,6 +29,11 @@ const Product = ({product}) => {
 			}, 3000);			
 		}
 	}, [success]);
+
+	// useEffect(async () => {
+		// const res = await axios.get(`http://localhost:3000/api/products/related`);
+		// console.log(res.data)
+	// }, []);
 
 	const handleChange = (e, option) => {
 		const checked = e.target.checked;
@@ -73,7 +80,7 @@ const Product = ({product}) => {
 				<div>
 					<Markup markup={product.desc} />
 				</div>
-				<span className={styles.price}>${price}</span>
+				<span className={styles.price}>{price}جـ.م</span>
 
 				{product.extraOptions && (
 					<Fragment>
@@ -104,6 +111,7 @@ const Product = ({product}) => {
 				</div>
 			</div>
 		</div>
+		{categories.map((category, i) => <ByCategory key={i} category={category}/>)}
 		</Fragment>
 	)
 }
@@ -111,9 +119,11 @@ const Product = ({product}) => {
 export const getServerSideProps = async (ctx) => {
   const url = 'http://localhost:3000/api/products';
   const res = await axios.get(`${url}/${ctx.params.id}`);
+	const categories = await axios.get(`${url}/categories`);
   return {
     props: {
-      product: res.data
+      product: res.data,
+			categories: categories.data
     }
   }
 }

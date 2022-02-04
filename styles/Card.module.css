@@ -14,12 +14,13 @@
     -webkit-box-shadow: 1px -2px 15px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 1px -2px 15px 0px rgba(0,0,0,0.75);
     cursor: pointer;
-    
+    position: relative;
 }
 
-.container img {
-    max-height: 80%;
+.img {
+    height: 60%;
     width: 100%;
+    object-fit: cover;
 }
 
 .title {

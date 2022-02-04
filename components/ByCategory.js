@@ -60,7 +60,7 @@ const ByCategory = ({category}) => {
 	const listingPosts = () => {
 		return posts.map((product, i) => 
 		// <Slide index={i}>
-			<Card style={{marginLeft: 15}} key={product._id} _id={product._id} title={product.title} desc={product.desc} image={product.image} price={product.price} />
+			<Card style={{marginLeft: 15}} key={product._id} _id={product._id} title={product.title} desc={product.desc} image={product.image} subtitle={product.subtitle} price={product.price} />
 		// </Slide>
 		)
 	}
