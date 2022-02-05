@@ -14,8 +14,11 @@ import axios from 'axios';
 import queryString from 'query-string';
 import { useState, Fragment } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+import CategoryCard from '../components/CategoryCard'
 
-const Home = ({productsList, categories}) => {
+const Home = ({productsList, byCategories, categories}) => {
+  const router = useRouter();
   const [search, setSearch] = useState('');
   const [products, setProducts] = useState([]);
   const [loaded, setLoaded] = useState(false);
@@ -26,23 +29,14 @@ const Home = ({productsList, categories}) => {
 
 	const handleSubmit = async (e) => {
     e.preventDefault();
-		const url = 'http://localhost:3000/api/products';
-		console.log('hit search')
-		const res = await axios.get(`${url}/search`, {
-			params: {
-				search
-			},
-			paramsSerializer: params => {
-				console.log(queryString.stringify(params));
-				return queryString.stringify(params, {arrayFormat: 'repeat'});
-			}
-		})
-
-		console.log(res.data);
-    setLoaded(true);
-		setProducts(res.data);
+		
+    router.push(`/products?search=${search}`);
 
 	}
+
+  const handleRoute = (cat) => {
+    router.push(`/products?search=${cat}`)
+  }
 
   return (
     <div className={styles.container}>
@@ -71,17 +65,25 @@ const Home = ({productsList, categories}) => {
 					cursor: 'pointer'
 				}} />
 			</form>
-      {/* SEARCH BAR */}
-
-      {!loaded && <ProductList search={false} products={productsList}/>}
+      {/* END SEARCH BAR */}
+        <div className={styles.categoriesContainer}>
+          {categories.map(category => {
+            console.log(category.main)
+            return(
+              <div onClick={() => handleRoute(category.main)}>
+                <CategoryCard category={category} />
+              </div>
+          )})}
+        </div>
+      {/* {!loaded && <ProductList search={false} products={productsList}/>}
       {loaded && (
         <Fragment>
           
           <ProductList search={true} products={products}/>
           
         </Fragment>
-      )}
-      {categories.map((category, i) => <ByCategory key={i} category={category}/>)}
+      )} */}
+      {byCategories.map((category, i) => <ByCategory key={i} category={category}/>)}
       {/* <Footer/> */}
     </div>
   )
@@ -90,12 +92,14 @@ const Home = ({productsList, categories}) => {
 
 export const getServerSideProps = async (ctx) => {
   const myCookie = ctx.req.cookies;
-  const url = 'http://localhost:3000/api/products';
-  const res = await axios.get(`${url}/home`);
-  const categories = await axios.get(`${url}/categories`);
+  const url = 'http://localhost:3000/api';
+  const res = await axios.get(`${url}/products/home`);
+  const byCategories = await axios.get(`${url}/products/categories`);
+  const categories = await axios.get(`${url}/categories`)
   return {
     props: {
       productsList: res.data,
+      byCategories: byCategories.data,
       categories: categories.data
     }
   }

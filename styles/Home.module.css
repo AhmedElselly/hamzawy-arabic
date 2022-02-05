@@ -2,11 +2,21 @@
     overflow: hidden;
 }
 
+.categoriesContainer {
+    display: flex;
+    flex-wrap: wrap;
+    /* background-color: #000; */
+    width: 80%;
+    margin: 50px auto;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .item {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: -150px;
+    margin-top: -250px;
     z-index: 100000;
 }
 

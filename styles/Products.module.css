@@ -1,6 +1,7 @@
 .container {
     display: flex;
     flex-direction: row;
+    background-color: #EAEDED;
 }
 
 .right {
@@ -95,21 +96,7 @@
     color: #fff;
 }
 
-@media screen and (max-width: 980px) {
-    .container {
-        flex-direction: row;
-    }
-
-    .right {
-        max-width: 100%;
-    }
-
-    .btn {
-        margin-bottom: 40px;
-    }
-}
-
-@media screen and (max-width: 560px) {
+@media screen and (max-width: 900px) {
     .container {
         flex-direction: column;
     }

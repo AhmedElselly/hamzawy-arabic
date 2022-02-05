@@ -15,7 +15,8 @@ const handler = async (req, res) => {
     }
 
     if(method === 'GET'){
-        const categories = await Category.find();
+        const categories = await Category.find().limit(7);
+        
         return res.json(categories);
     }
 }

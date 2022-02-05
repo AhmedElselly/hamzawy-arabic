@@ -9,6 +9,7 @@ import Card from '../../components/Card';
 import ReactPaginate from 'react-paginate';
 import Slider, { Range } from 'rc-slider';
 import 'rc-slider/assets/index.css';
+import Loading from '../../components/Loading';
 
 const url = 'http://localhost:3000/api/products';
 
@@ -63,20 +64,21 @@ const Products = (props) => {
 
 	const handleClick = async e => {
 		e.preventDefault();
-		const res = await axios.get(`${url}/search`, {
-			params: {
-				search,
-				min,
-				max
-			},
-			paramsSerializer: params => {
-				console.log(queryString.stringify(params));
-				return queryString.stringify(params, {arrayFormat: 'repeat'});
-			}
-		});
-		console.log('res.data', res.data);
-		setProducts(res.data);
-		setSearched(true)
+		// const res = await axios.get(`${url}/search`, {
+		// 	params: {
+		// 		search,
+		// 		min,
+		// 		max
+		// 	},
+		// 	paramsSerializer: params => {
+		// 		console.log(queryString.stringify(params));
+		// 		return queryString.stringify(params, {arrayFormat: 'repeat'});
+		// 	}
+		// });
+		// console.log('res.data', res.data);
+		// setProducts(res.data);
+		// setSearched(true)
+		props.router.push(`/products?search=${search}&min=${min}&max=${max}`);
 	}
 	
 
@@ -91,7 +93,7 @@ const Products = (props) => {
 				<Card key={product._id} _id={product._id} title={product.title} subtitle={product.subtitle} desc={product.desc} image={product.image} price={product.price} />
 			))
 		} else {
-			content = <div>Loading...</div>;
+			content = <Loading/>
 			
 		}
 		return content;
@@ -111,7 +113,7 @@ const Products = (props) => {
 		setVal(val);
 
 		console.log(min, max)
-		props.router.push(`/products/?min=${min}&max=${max}`)
+		// props.router.push(`/products/?search=${search}min=${min}&max=${max}`)
 		// const res = await axios.get(`${url}/search`);
 		// console.log(res.data);
 	}
@@ -197,20 +199,18 @@ const Products = (props) => {
 
 export const getServerSideProps = async ctx => {
 	const page = ctx.query.page || 1;
-	const {min, max} = ctx.query;
+	const {min, max, search} = ctx.query;
+	console.log('ctx.query', ctx.query)
 	const res = await axios.get(`${url}`, {
 		params: {
 			page,
 			min,
-			max
-		},
-		paramsSerializer: params => {
-			console.log(queryString.stringify(params));
-			return queryString.stringify(params, {arrayFormat: 'repeat'});
+			max,
+			search
 		}
 	});
 	// console.log(`query ${ctx.query.min}`)
-	// console.log(res.data)
+	console.log(res.data.totalDocs)
 	const {
 		docs,
 		totalDocs,

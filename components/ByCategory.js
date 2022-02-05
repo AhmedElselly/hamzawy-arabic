@@ -69,29 +69,29 @@ const ByCategory = ({category}) => {
 		<div className={styles.container}>
 			<h3 className={styles.title}>{category}</h3>
 		
-			{/* <div className={styles.carouselContainer}> */}
-			<Carousel
-				// partialVisible={true} 
-				swipeable={true}
-				draggable={true}
-				// showDots={true}
-				responsive={responsive}
-				ssr={true} // means to render carousel on server-side.
-				infinite={true}
-				autoPlaySpeed={1000}
-				keyBoardControl={true}
-				customTransition="all .5s ease-in-out"
-				transitionDuration={500}
-				containerClass='carousel-container'
-				// removeArrowOnDeviceType={["tablet", "mobile"]}
-				dotListClass="custom-dot-list-style"
-				itemClass="carousel-item-padding-40-px"
-				itemClass={styles.item}
-				focusOnSelect={true}
-			>
-				{listingPosts()}
-			</Carousel>
-			{/* </div> */}
+			<div className={styles.carouselContainer}>
+				<Carousel
+					// partialVisible={true} 
+					swipeable={true}
+					draggable={true}
+					// showDots={true}
+					responsive={responsive}
+					ssr={true} // means to render carousel on server-side.
+					infinite={true}
+					autoPlaySpeed={1000}
+					keyBoardControl={true}
+					customTransition="all .5s ease-in-out"
+					transitionDuration={500}
+					containerClass='carousel-container'
+					// removeArrowOnDeviceType={["tablet", "mobile"]}
+					dotListClass="custom-dot-list-style"
+					// itemClass="carousel-item-padding-40-px"
+					itemClass={styles.item}
+					focusOnSelect={true}
+				>
+					{listingPosts()}
+				</Carousel>
+			</div>
 		</div>
 	)
 }

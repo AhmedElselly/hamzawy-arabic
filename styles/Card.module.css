@@ -17,6 +17,63 @@
     position: relative;
 }
 
+
+.card {
+    margin: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    width: 300px;
+    cursor: pointer;
+    transition: .3s all ease-in-out;
+  }
+
+  .card:hover {
+    transform: translateY(-10px);
+  }
+
+  .cardHeader img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  .cardBody {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    min-height: 200px;
+  }
+  
+  .tag {
+    background: #cccccc;
+    border-radius: 50px;
+    font-size: 18px;
+    margin: 0;
+    color: #d1411e;
+    padding: 2px 10px;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .tagTeal {
+    background-color: #47bcd4;
+  }
+  .tagPurple {
+    background-color: #5e76bf;
+  }
+  .tagPink {
+    background-color: #cd5b9f;
+  }
+  
+  .cardBody p {
+    font-size: 13px;
+    margin: 0 0 40px;
+  }
+  
+  
+
 .img {
     height: 60%;
     width: 100%;
@@ -46,9 +103,9 @@
 
 @media screen and (max-width: 980px) {
     .container {
-        max-width: 30%;
+        max-width: 100%;
         margin: 10px 10px;
-        height: 300px;
+        height: 500px;
     }
 
     .container img {
@@ -71,6 +128,33 @@
 }
 
 @media screen and (max-width: 680px) {
+    .container {
+        max-width: 70%;
+        margin: 10px 10px;
+        height: 300px;
+    }
+
+    .container img {
+        height: 350px;
+    }
+
+    .title {
+        font-size: 22px;
+
+    }
+    
+    .price,
+    .desc {
+        font-size: 16px;
+    }
+
+    .desc {
+        margin-bottom: 100px;
+    }
+}
+
+
+@media screen and (max-width: 380px) {
     .container {
         max-width: 90%;
         margin: 10px 10px;
