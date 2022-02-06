@@ -4,8 +4,6 @@ import Card from './Card';
 import styles from '../styles/ByCategory.module.css';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-// import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
-// import 'pure-react-carousel/dist/react-carousel.es.css';
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
@@ -24,11 +22,11 @@ const ByCategory = ({category}) => {
 			items: 3
 		},
 		tablet: {
-			breakpoint: { max: 1024, min: 464 },
+			breakpoint: { max: 1024, min: 680 },
 			items: 2
 		},
 		mobile: {
-			breakpoint: { max: 464, min: 0 },
+			breakpoint: { max: 680, min: 0 },
 			items: 1
 		}
 	};
@@ -59,9 +57,7 @@ const ByCategory = ({category}) => {
 
 	const listingPosts = () => {
 		return posts.map((product, i) => 
-		// <Slide index={i}>
-			<Card style={{marginLeft: 15}} key={product._id} _id={product._id} title={product.title} desc={product.desc} image={product.image} subtitle={product.subtitle} price={product.price} />
-		// </Slide>
+			<Card style={{marginLeft: 15}} key={product._id} _id={product._id} title={product.title} category={product.category} image={product.image} subtitle={product.subtitle} price={product.price} />
 		)
 	}
 	

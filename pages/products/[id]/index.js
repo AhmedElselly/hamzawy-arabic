@@ -53,7 +53,7 @@ const Product = ({product, categories}) => {
 	const handleAddToCart = () => {
 		dispatch(addProduct({...product, extras, price, qty}));
 		setSuccess(true)
-		setSuccessMessage('Added product into cart');
+		setSuccessMessage('تم الإضافة في السلة');
 	}
 
 

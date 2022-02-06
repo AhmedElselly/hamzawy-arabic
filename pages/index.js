@@ -41,7 +41,7 @@ const Home = ({productsList, byCategories, categories}) => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Hamzawy</title>
+        <title>Diab Shopping</title>
         <meta name="description" content="Best pizza shop in town" />
         <link rel="icon" href="/favicon.ico" />
         

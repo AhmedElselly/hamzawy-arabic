@@ -36,7 +36,7 @@ const Navbar = (props) => {
 				<div className={styles.badgeContainer}>
 					
 					<Link href='/'>
-						<h1 className={styles.badge}>Hamzawy</h1>
+						<h1 className={styles.badge}>Diab Shopping</h1>
 					</Link>
 					<div className={styles.text}>01125894457</div>
 				</div>

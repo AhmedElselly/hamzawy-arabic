@@ -9,15 +9,40 @@ import CoffeeMakerIcon from '@mui/icons-material/CoffeeMaker';
 import LocalDiningIcon from '@mui/icons-material/LocalDining';
 import TableRestaurantIcon from '@mui/icons-material/TableRestaurant';
 import RestaurantIcon from '@mui/icons-material/Restaurant';
+import { useState, ReactDOM } from 'react';
+import { useRouter } from 'next/router';
 
-const CategoryCard = ({category}) => {
+const CategoryCard = ({category, subCategory}) => {
+	const router = useRouter();
+	const [checked, setChecked] = useState(false);
+
+	const handleClick = () => {
+		setChecked(!checked);
+	}
+
+	
+	const handleUncheck = () => {
+		setChecked(!checked);
+	}
+
+	const handleRoute = sub => {
+		router.push(`/products?search=${sub}`);
+		setChecked(false);
+	}
+
 	return(
-		<div className={styles.container}>
+		<div onFocus={handleClick} tabIndex={0} onBlur={handleUncheck} className={styles.container}>
 			<div className={styles.iconContainer}>
-				{/* here goes the icon */}
 				<MicrowaveIcon/>
 			</div>
 			<span>{category.main}</span>
+			{subCategory && (
+				<div style={{display: checked ? 'block' : 'none'}} className={styles.subCategory}>
+					{subCategory.map(sub => (
+						<div onClick={() => handleRoute(sub)} className={styles.subText}>{sub}</div>
+					))}
+				</div>	
+			)}			
 		</div>
 	)
 }

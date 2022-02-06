@@ -1,7 +1,26 @@
 .container {
     /* background-color: #000; */
     max-width: 70px;
-    /* height: 400px; */
-    /* color: #fff; */
     cursor: pointer;
+    position: relative;
+}
+
+.subCategory {
+    position: absolute;
+    background-color: #d1411e;
+    width: 150px;
+    height: max-content;
+    direction: rtl;
+    border-radius: 5px;
+    z-index: 1000;
+    color: #fff;
+}
+
+.subText {
+    padding: 10px 10px;
+    transition: 0.2s all ease-in-out;
+}
+.subText:hover {
+    background-color: #fff;
+    color: #000;
 }

@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Lobster&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 .container {
-    height: 100px;
+    height: 120px;
     padding: 0 50px;
     background-color: #d1411e;
     display: flex;
@@ -142,6 +142,7 @@
 
 @media screen and (max-width: 906px) {
     .container {
+        height: 120px;
         position: inherit;
         /* top: 0;
         left: 0; */

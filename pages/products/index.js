@@ -10,8 +10,9 @@ import ReactPaginate from 'react-paginate';
 import Slider, { Range } from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import Loading from '../../components/Loading';
+import CategoryCard from '../../components/CategoryCard';
 
-const url = 'http://localhost:3000/api/products';
+const url = 'http://localhost:3000/api';
 
 const Products = (props) => {
 	const [search, setSearch] = useState('');
@@ -21,13 +22,17 @@ const Products = (props) => {
 	const [searched, setSearched] = useState(false);
 	const [products, setProducts] = useState([]);
 	const [count, setCount] = useState([]);
+	const [check, setCheck] = useState([]);
 
-
+	console.log(check)
 	const [isLoading, setLoading] = useState(false); //State for the loading indicator
 	const startLoading = () => setLoading(true);
 	const stopLoading = () => setLoading(false);
 
 	useEffect(() => { //After the component is mounted set router event handlers
+		if(props.router.query.search){
+			setSearch(props.router.query.search);
+		}
 		Router.events.on('routeChangeStart', startLoading); 
 		Router.events.on('routeChangeComplete', stopLoading);
 
@@ -64,20 +69,7 @@ const Products = (props) => {
 
 	const handleClick = async e => {
 		e.preventDefault();
-		// const res = await axios.get(`${url}/search`, {
-		// 	params: {
-		// 		search,
-		// 		min,
-		// 		max
-		// 	},
-		// 	paramsSerializer: params => {
-		// 		console.log(queryString.stringify(params));
-		// 		return queryString.stringify(params, {arrayFormat: 'repeat'});
-		// 	}
-		// });
-		// console.log('res.data', res.data);
-		// setProducts(res.data);
-		// setSearched(true)
+		
 		props.router.push(`/products?search=${search}&min=${min}&max=${max}`);
 	}
 	
@@ -86,11 +78,11 @@ const Products = (props) => {
 		let content = null;
 		if(!isLoading && !searched){
 			content = props.docs.map(product => (
-				<Card key={product._id} _id={product._id} title={product.title} subtitle={product.subtitle} desc={product.desc} image={product.image} price={product.price} />
+				<Card key={product._id} _id={product._id} title={product.title} category={product.category} subtitle={product.subtitle} desc={product.desc} image={product.image} price={product.price} />
 			))
 		} else if (searched){
 			content = products.map(product => (
-				<Card key={product._id} _id={product._id} title={product.title} subtitle={product.subtitle} desc={product.desc} image={product.image} price={product.price} />
+				<Card key={product._id} _id={product._id} title={product.title} category={product.category} subtitle={product.subtitle} desc={product.desc} image={product.image} price={product.price} />
 			))
 		} else {
 			content = <Loading/>
@@ -113,10 +105,16 @@ const Products = (props) => {
 		setVal(val);
 
 		console.log(min, max)
-		// props.router.push(`/products/?search=${search}min=${min}&max=${max}`)
-		// const res = await axios.get(`${url}/search`);
-		// console.log(res.data);
+		
 	}
+
+
+  const handleRoute = (cat) => {
+	setSearch(cat);
+    props.router.push(`/products?search=${cat}`)
+  }
+
+	
 
 	return(
 		<Fragment>
@@ -128,62 +126,68 @@ const Products = (props) => {
 		<div className={styles.container}>
 			<div className={styles.right}>
 				<form onSubmit={handleClick}>
-				<div className={styles.item}>
+					<div className={styles.item}>
 
-					<label className={styles.label}>البحث</label>
-					<input 
-						type='text' 
-						placeholder='اسم المنتج او الوصف' 
-						className={styles.input}
-						name='search'
-						value={search}
-						onChange={handleChange}
+						<label className={styles.label}>البحث</label>
+						<input 
+							type='text' 
+							placeholder='اسم المنتج او الوصف أو التصنيف' 
+							className={styles.input}
+							name='search'
+							value={search}
+							onChange={handleChange}
+						/>
+					</div>
+					<div className={styles.item}>
+						<label className={styles.label}>أقل سعر</label>
+						<input 
+							type='number' 
+							placeholder='أقل سعر' 
+							className={styles.input}
+							name='min'
+							value={min}
+							onChange={handleChange}
+						/>
+					</div>
+					<div className={styles.item}>
+						<label className={styles.label}>أعلى سعر</label>
+						<input 
+							type='number' 
+							placeholder='أعلى سعر' 
+							className={styles.input}
+							name='max'
+							value={max}
+							onChange={handleChange}
+						/>
+					</div>
+					<Range
+						allowCross={false}
+						draggableTrack
+						value={val}
+						min={50}
+						max={1000}
+						onChange={handleSliderChange}
+						step={10}
 					/>
-				</div>
-				<div className={styles.item}>
-					<label className={styles.label}>أقل سعر</label>
-					<input 
-						type='number' 
-						placeholder='أقل سعر' 
-						className={styles.input}
-						name='min'
-						value={min}
-						onChange={handleChange}
-					/>
-				</div>
-				<div className={styles.item}>
-					<label className={styles.label}>أعلى سعر</label>
-					<input 
-						type='number' 
-						placeholder='أعلى سعر' 
-						className={styles.input}
-						name='max'
-						value={max}
-						onChange={handleChange}
-					/>
-				</div>
-				<Range
-					allowCross={false}
-					draggableTrack
-					value={val}
-					min={50}
-					max={1000}
-					onChange={handleSliderChange}
-					step={10}
-				/>
-				<button className={styles.btn}>بحث</button>
+					
+					
+					<button className={styles.btn}>بحث</button>
 				</form>
 			</div>
 			<div className={styles.left}>
+			<div className={styles.categoriesContainer}>
+          {props.categories.map(category => {
+            console.log(category.main)
+            return(
+              <div onClick={() => handleRoute(category.main)}>
+                <CategoryCard category={category} subCategory={category.subCategory} />
+              </div>
+          )})}
+        </div>
 				<h1 className={styles.searchTitle}>نتيجة البحث</h1>
 				{/* Pagination */}
 				<div className={styles.paginationContainer}>
 					{countPages().map(c => {
-						// {props.router.query.page === String(c) ? (
-						// <div onClick={() => pagginationHandler(c)} key={c} className={styles.page}>{c}</div>
-						// ) : (
-
-						// )}
 						return <div onClick={() => pagginationHandler(c)} key={c} className={Number(props.router.query.page) !== c ? (styles.page) : (styles.page1)} >{c}</div>
 					})}
 				</div>
@@ -201,7 +205,7 @@ export const getServerSideProps = async ctx => {
 	const page = ctx.query.page || 1;
 	const {min, max, search} = ctx.query;
 	console.log('ctx.query', ctx.query)
-	const res = await axios.get(`${url}`, {
+	const res = await axios.get(`${url}/products`, {
 		params: {
 			page,
 			min,
@@ -210,7 +214,8 @@ export const getServerSideProps = async ctx => {
 		}
 	});
 	// console.log(`query ${ctx.query.min}`)
-	console.log(res.data.totalDocs)
+	const categories = await axios.get(`${url}/categories`);
+	console.log(categories.data);
 	const {
 		docs,
 		totalDocs,
@@ -232,7 +237,8 @@ export const getServerSideProps = async ctx => {
 			hasPrevPage,
 			hasNextPage,
 			prevPage,
-			nextPage
+			nextPage,
+			categories: categories.data
 		}
 	}
 }

@@ -4,6 +4,17 @@
     background-color: #EAEDED;
 }
 
+.categoriesContainer {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #999;
+    width: 90%;
+    margin: 15px auto;
+    padding: 15px 0;
+    justify-content: space-evenly;
+    border-radius: 10px;
+}
+
 .right {
     flex: 1;
     max-width: 300px;

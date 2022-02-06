@@ -19,7 +19,8 @@ const Login = props => {
 		}
 	}
 
-	const handleClick = async () => {
+	const handleClick = async e => {
+		e.preventDefault()
 		login(email, password).then(res => {
 			console.log(res.data);
 			authenticate(res.data, () => {
@@ -31,34 +32,9 @@ const Login = props => {
 	
 	return(
 		<Fragment>
-		{/* <div className={styles.container}>
-			<div className={styles.wrapper}>
-				<div className={styles.item}>
-					<label className={styles.label}>Email</label>
-					<input 
-						className={styles.input}
-						type='email' 
-						name='email'
-						value={email}
-						onChange={handleChange}
-					/>
-				</div>
-				<div className={styles.item}>
-					<label className={styles.label}>Password</label>
-					<input 
-						className={styles.input}
-						type='password' 
-						name='password'
-						value={password}
-						onChange={handleChange}
-					/>
-				</div>
-				<button onClick={handleClick} className={styles.btn}>Login</button>
-			</div>
-		</div> */}
 		<Container>
 		<div className={styles.wrapper}>
-			<div className={styles.innerContainer}>
+			<form onSubmit={handleClick} className={styles.innerContainer}>
 				<h2 className={styles.title}>الدخول</h2>
 				<div className={styles.item}>
 					<label className={styles.label}>إيميل</label>
@@ -80,8 +56,8 @@ const Login = props => {
 						onChange={handleChange}
 					/>
 				</div>
-				<button onClick={handleClick} className={styles.btn}>دخول</button>
-			</div>
+				<button className={styles.btn}>دخول</button>
+			</form>
 			</div>
 		</Container>
 		</Fragment>

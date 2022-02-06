@@ -1,10 +1,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from '../styles/Card.module.css';
-import { Markup } from 'react-render-markup';
 
-const Card = ({_id, title, subtitle, image,  price}) => {
-	const allowed = ['p'];
+const Card = ({_id, title, subtitle, category, image,  price}) => {
 	return(
 		<Link href={`/products/${_id}`}>
 		
@@ -15,9 +13,8 @@ const Card = ({_id, title, subtitle, image,  price}) => {
 				<div className={styles.cardBody}>
 					<span className={styles.tag}>{price} جـ.م</span>
 					<h4>{title}</h4>
-					<p>
-						{subtitle}
-					</p>			
+					<p>{subtitle}</p>
+					<span className={styles.tagPurple}>تصنيف: {category}</span>
 				</div>
 			</div>
 		</Link>
