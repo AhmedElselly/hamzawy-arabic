@@ -7,10 +7,11 @@ import {addProduct} from '../../../redux/cartSlice';
 import { Markup } from 'react-render-markup';
 import Alert from '../../../components/Alert';
 import ByCategory from '../../../components/ByCategory';
+import ImageContainer from '../../../components/ImageContainer';
 
 const Product = ({product, categories}) => {
 	const [size, setSize] = useState(0);
-	// const [related, setRelated] = useState([]);
+	const [showImage, setShowImage] = useState(false);
 	const [price, setPrice] = useState(product.price);
 	const [extras, setExtras] = useState([]);
 	const [qty, setQty] = useState(1);
@@ -56,6 +57,9 @@ const Product = ({product, categories}) => {
 		setSuccessMessage('تم الإضافة في السلة');
 	}
 
+	const showImageContainer = () => {
+		setShowImage(true);
+	}
 
 	return(
 		<Fragment>
@@ -71,7 +75,7 @@ const Product = ({product, categories}) => {
 				)}
 			</div>
 			<div className={styles.left}>
-				<div className={styles.imgContainer}>
+				<div onFocus={showImageContainer} tabIndex={0} onBlur={()=> setShowImage(false)} className={styles.imgContainer}>
 					<img src={product.image} style={{objectFit: 'contain'}} width={'100%'} height={'100%'} />
 				</div>
 			</div>
@@ -111,6 +115,11 @@ const Product = ({product, categories}) => {
 				</div>
 			</div>
 		</div>
+		
+			<div className={showImage ? styles.imageMagnifiedBlock : styles.imageMagnifiedNone}>
+				<ImageContainer image={product.image} title={product.title} />
+			</div>
+		
 		{categories.map((category, i) => <ByCategory key={i} category={category}/>)}
 		</Fragment>
 	)
