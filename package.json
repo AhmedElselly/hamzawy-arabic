@@ -1,7 +1,7 @@
 {
-  "name": "food-ordering-app",
-  "private": true,
   "cacheDirectories": [".next/cache"],
+  "name": "food-ordering-app",
+  "private": true,  
   "engines": {
     "node": "16.13.1",
     "npm": "8.3.0"
