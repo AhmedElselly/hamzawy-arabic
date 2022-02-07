@@ -61,8 +61,8 @@ const Navbar = (props) => {
 					)}
 					{!isAuthenticated() && (
 						<Fragment>
-							<Link href='/login'><li className={styles.listItem}>الدخول</li></Link>
-							<Link href='/signup'><li className={styles.listItem}>التسجيل</li></Link>
+							<Link href='/contact'><li style={{width: 'max-content'}} className={styles.listItem}>تواصل معنا</li></Link>
+							<Link href='/about'><li tyle={{width: 'max-content'}} className={styles.listItem}>من نحن</li></Link>
 						</Fragment>
 					)}
 					
@@ -102,8 +102,8 @@ const Navbar = (props) => {
 						)}
 						{!isAuthenticated() && (
 							<Fragment>
-								<Link href='/login'><li className={styles.listItem}>الدخول</li></Link>
-								<Link href='/signup'><li className={styles.listItem}>تسجيل الدخول</li></Link>
+								<Link href='/contact'><li style={{width: 'max-content'}} className={styles.listItem}>تواصل معنا</li></Link>
+							<Link href='/about'><li tyle={{width: 'max-content'}} className={styles.listItem}>من نحن</li></Link>
 							</Fragment>
 						)}
 						

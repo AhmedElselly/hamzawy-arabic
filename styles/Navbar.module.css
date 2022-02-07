@@ -92,6 +92,7 @@
     align-items: center;
     list-style: none;
     color: #fff;
+    width: max-content;
 }
 
 .listItem {
