@@ -5,6 +5,7 @@ import OrderDetailed from '../components/OrderDetailed';
 import axios from 'axios';
 import {useRouter} from 'next/router';
 import Alert from '../components/Alert';
+import Image from 'next/image';
 
 // import {
 // 	PayPalScriptProvider,
@@ -75,8 +76,9 @@ const Cart = props => {
 						<tr className={styles.tr} key={product._id}>
 							<td className={styles.td}>
 								<div className={styles.imgContainer}>
-									<img 
+									<Image 
 										src={product.image}
+										alt={product.title}
 										width={'100%'}
 										height={'100%'}
 										style={{objectFit: 'cover'}}

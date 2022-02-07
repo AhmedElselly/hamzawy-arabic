@@ -70,7 +70,7 @@ const Home = ({productsList, byCategories, categories}) => {
           {categories.map(category => {
             console.log(category.main)
             return(
-              <div onClick={() => handleRoute(category.main)}>
+              <div key={category._id} onClick={() => handleRoute(category.main)}>
                 <CategoryCard category={category} />
               </div>
           )})}
