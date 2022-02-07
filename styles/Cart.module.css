@@ -1,6 +1,7 @@
 .container {
     padding: 50px;
     display: flex;
+    position: relative;
 }
 
 .left {
@@ -10,6 +11,24 @@
 .right {
     flex: 1;
 }
+
+.alert {
+    opacity: 1;
+    visibility: visible;
+    position: absolute;
+    color: #fff;
+    top: 5px;
+    left: 50%;
+    transition: 0.5s all ease-in-out;
+    z-index: 100000;
+    transform: translateX(-50%);
+}
+
+.none {
+    visibility: hidden;
+    opacity: 0;
+}
+
 
 .imgContainer {
     width: 100px;

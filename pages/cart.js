@@ -1,9 +1,11 @@
+import { useState, useEffect } from 'react';
 import styles from '../styles/Cart.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import OrderDetailed from '../components/OrderDetailed';
-import { useState } from 'react';
 import axios from 'axios';
 import {useRouter} from 'next/router';
+import Alert from '../components/Alert';
+
 // import {
 // 	PayPalScriptProvider,
 // 	PayPalButtons,
@@ -19,18 +21,33 @@ const Cart = props => {
 	const router = useRouter();
 	const cart = useSelector(state => state.cart);
 	const [cash, setCash] = useState(false);
+	const [successMessage, setSuccessMessage] = useState('');
+	const [success, setSuccess] = useState(false);
+
+
+	useEffect(() => {
+		if(success){
+			setTimeout(() => {
+				setSuccess(false)
+			}, 3000);			
+		}
+	}, [success]);
+
 	const url = 'http://localhost:3000/api';
 
 	const createOrder = async data => {
+		
 		try {
 			console.log('data', data)
 			
 			const res = await axios.post(`${url}/orders`, data);
-			// console.log(res.data)
-			if(res.status === 201){
-				dispatch(reset());
-				router.push(`/orders/${res.data._id}`);
-			}
+			console.log(res.data)
+			setSuccess(true);
+			setSuccessMessage('تم الطلب وسيتم التواصل معك قريبا')
+			dispatch(reset());
+			
+			// router.push(`/orders/${res.data._id}`);
+		
 		} catch(err) {
 
 		}
@@ -40,6 +57,11 @@ const Cart = props => {
 
 	return(
 		<div className={styles.container}>
+			<div className={successMessage ? styles.alert : styles.none}>
+				{success && (
+					<Alert message={successMessage} />
+				)}
+			</div>
 			<div className={styles.left}>
 				<table className={styles.table}>
 					<tr className={styles.trTitle}>
