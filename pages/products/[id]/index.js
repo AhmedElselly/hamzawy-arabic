@@ -1,5 +1,6 @@
 import { useState, Fragment, useEffect } from 'react';
 import Head from 'next/head';
+import Image from 'next/image';
 import styles from '../../../styles/Product.module.css';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
@@ -76,7 +77,7 @@ const Product = ({product, categories}) => {
 			</div>
 			<div className={styles.left}>
 				<div onFocus={showImageContainer} tabIndex={0} onBlur={()=> setShowImage(false)} className={styles.imgContainer}>
-					<img src={product.image} alt={product.title} style={{objectFit: 'contain'}} width={'100%'} height={'100%'} />
+					<Image src={product.image} alt={product.title} layout='fill' />
 				</div>
 			</div>
 			<div className={styles.right}>

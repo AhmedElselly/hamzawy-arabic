@@ -8,7 +8,7 @@ const Card = ({_id, title, subtitle, category, image,  price}) => {
 		
 			<div className={styles.card}>
 				<div className={styles.cardHeader}>
-					<img src={image} alt={title} />
+					<Image width={500} height={300} src={image} alt={title} />
 				</div>
 				<div className={styles.cardBody}>
 					<span className={styles.tag}>{price} جـ.م</span>

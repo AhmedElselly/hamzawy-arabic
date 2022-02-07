@@ -4,6 +4,7 @@ import { Editor } from '@tinymce/tinymce-react';
 import axios from 'axios';
 import {useRouter} from 'next/router';
 import Head from 'next/head';
+import Image from 'next/image';
 
 const url = 'http://localhost:3000/api/categories';
 
@@ -126,7 +127,9 @@ const UpdateCard = ({post}) => {
 							type='file' 
 							onChange={e => setFiles(e.target.files[0])}
 						/>
-						<img width={100} height={100} src={image} alt={title} />
+						<div className={styles.imageContainer}>
+							<Image width={100} height={100} src={image} alt={title} />
+						</div>
 					</div>
 					<div className={styles.item}>
 						<label className={styles.label}>الوصف</label>
