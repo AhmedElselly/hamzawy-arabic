@@ -26,7 +26,7 @@ const Orders = props => {
 					<div className={styles.listItem}><b>Total</b>: ${order.total}</div>
 					<h3 className={styles.totalProducts}>Total products in the order: {order.cart.products.length}</h3>
 					{order.cart.products.map(product => (
-						<div className={styles.product}>
+						<div key={product._id} className={styles.product}>
 							<div className={styles.listItem}>
 								<h4 className={styles.header}>Title:</h4> <span className={styles.span}><Link href={`/products/${product._id}`} passHref><a>{product.title}</a></Link></span>
 							</div>
