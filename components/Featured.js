@@ -26,12 +26,12 @@ const Featured = props => {
 
 	return(
 		<div className={styles.container}>
-			{index !== 0 && <div className={styles.arrowLeftContainer} onClick={() => handleClick('l')}>
+			{/* {index !== 0 && <div className={styles.arrowLeftContainer} onClick={() => handleClick('l')}>
 				<ArrowBackIosIcon sx={{
 					color: '#fff',
 					fontSize: 48
 				}}/>
-			</div>}		
+			</div>}		 */}
 			<div className={styles.wrapper}>
 				<div className={styles.imageContainer} style={{transform: `translateX(${-100*index}vw)`}}>
 					{images.map((src, i) => (
@@ -39,12 +39,12 @@ const Featured = props => {
 					))}
 				</div>
 			</div>
-			{index !== 2 && <div className={styles.arrowRightContainer} onClick={() => handleClick('r')}>
+			{/* {index !== 2 && <div className={styles.arrowRightContainer} onClick={() => handleClick('r')}>
 				<ArrowForwardIosIcon fontSize='large' sx={{
 					color: '#fff',
 					fontSize: 48
 				}}/>
-			</div>}
+			</div>} */}
 		</div>
 	)
 }

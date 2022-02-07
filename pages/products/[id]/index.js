@@ -76,7 +76,7 @@ const Product = ({product, categories}) => {
 			</div>
 			<div className={styles.left}>
 				<div onFocus={showImageContainer} tabIndex={0} onBlur={()=> setShowImage(false)} className={styles.imgContainer}>
-					<img src={product.image} style={{objectFit: 'contain'}} width={'100%'} height={'100%'} />
+					<img src={product.image} alt={product.title} style={{objectFit: 'contain'}} width={'100%'} height={'100%'} />
 				</div>
 			</div>
 			<div className={styles.right}>
