@@ -1,5 +1,6 @@
-import { useState } from 'react';
-import Container from '../components/Container';
+import Head from 'next/head';
+import { Fragment, useState } from 'react';
+import ContactContainer from '../components/ContactContainer';
 import styles from '../styles/Contact.module.css';
 
 const Contact = props => {
@@ -25,7 +26,13 @@ const Contact = props => {
 		e.preventDefault();
 	}
 	return(
-		<Container>
+		<Fragment>
+			<Head>
+				<title>تواصل معنا</title>
+				<meta name="تواصل معنا diab shopping" content="Diab shopping تواصل معنا" />
+				<link rel="icon" href="/favicon.ico" />			
+			</Head>
+		<ContactContainer>
 			<div className={styles.wrapper}>
 				<div className={styles.innerContainer}>
 					<h2 className={styles.title}>تواصل معنا</h2>
@@ -72,7 +79,8 @@ const Contact = props => {
 						</form>
 					</div>
 			</div>
-		</Container>
+		</ContactContainer>
+		</Fragment>
 	)
 }
 

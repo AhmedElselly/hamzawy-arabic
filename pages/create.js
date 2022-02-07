@@ -74,7 +74,7 @@ const Create = props => {
 				<title>Create Ordering App</title>
 				<meta name="description" content="Best pizza shop in town" />
 				<link rel="icon" href="/favicon.ico" />			
-		</Head>
+			</Head>
 		
 		<div className={styles.container}>
 			<div className={styles.wrapper}>
