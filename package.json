@@ -1,6 +1,7 @@
 {
   "name": "food-ordering-app",
   "private": true,
+  "cacheDirectories": [".next/cache"],
   "scripts": {
     "dev": "next dev",
     "build": "next build",
