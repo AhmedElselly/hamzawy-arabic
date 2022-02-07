@@ -36,13 +36,16 @@ const UpdateCard = ({post}) => {
 		// category
 	} = values;
 
-	useEffect(async () => {
-		const res = await axios.get(`${url}`);
-		setCategories(res.data);
-		
-		const subCat = await axios.get(`${url}/${category}`);
-		console.log('subcategory', subCat.data);
-		setAllSubCategory(subCat.data.subCategory);
+	useEffect(() => {
+		async function fetchData(){
+			const res = await axios.get(`${url}`);
+			setCategories(res.data);
+			
+			const subCat = await axios.get(`${url}/${category}`);
+			console.log('subcategory', subCat.data);
+			setAllSubCategory(subCat.data.subCategory);
+		};
+		fetchData();
 	}, [category]);
 
 

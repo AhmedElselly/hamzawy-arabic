@@ -36,9 +36,12 @@ const ByCategory = ({category}) => {
 	const [slideNumber, setSlideNumber] = useState(0);
 	const [posts, setPosts] = useState([]);
 	
-	useEffect(async () => {
-		const res = await axios.get(`${url}/category/${category}`)
-		setPosts(res.data);
+	useEffect(() => {
+		async function fetchData(){
+			const res = await axios.get(`${url}/category/${category}`)
+			setPosts(res.data);
+		}
+		fetchData()
 	}, []);
 
 	const handleClick = direction => {

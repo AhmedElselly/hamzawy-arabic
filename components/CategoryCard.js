@@ -38,8 +38,8 @@ const CategoryCard = ({category, subCategory}) => {
 			<span>{category.main}</span>
 			{subCategory && (
 				<div style={{display: checked ? 'block' : 'none'}} className={styles.subCategory}>
-					{subCategory.map(sub => (
-						<div onClick={() => handleRoute(sub)} className={styles.subText}>{sub}</div>
+					{subCategory.map((sub, i) => (
+						<div key={i} onClick={() => handleRoute(sub)} className={styles.subText}>{sub}</div>
 					))}
 				</div>	
 			)}			

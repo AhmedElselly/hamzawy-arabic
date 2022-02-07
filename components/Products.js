@@ -30,10 +30,10 @@ const Products = props => {
 		return posts?.map(post => {
 			return(
 				<div key={post._id} className={styles.card}>
-					<Link href={`/products/${post._id}`}>
+					<Link href={`/products/${post._id}`} passHref>
 						<span className={styles.title}>{post.title}</span>
 					</Link>
-					<Link href={`/products/${post._id}/update`}>
+					<Link href={`/products/${post._id}/update`} passHref>
 						<span className={styles.update}>تعديل</span>
 					</Link>
 					<span onClick={() => handleRemove(post._id)} className={styles.remove}>حذف</span>

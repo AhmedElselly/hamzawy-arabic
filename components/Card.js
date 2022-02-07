@@ -4,7 +4,7 @@ import styles from '../styles/Card.module.css';
 
 const Card = ({_id, title, subtitle, category, image,  price}) => {
 	return(
-		<Link href={`/products/${_id}`}>
+		<Link href={`/products/${_id}`} passHref>
 		
 			<div className={styles.card}>
 				<div className={styles.cardHeader}>
